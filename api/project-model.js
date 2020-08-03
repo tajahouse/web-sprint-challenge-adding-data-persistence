@@ -1,11 +1,10 @@
 const db = require('../data/db-config.js')
 
-
 const find = () =>{
     return db('projects')
 }
 
-const findById = () =>{
+const findById = (id) =>{
     return db('projects').where({ id })
 }
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const projects = require('./project-model');
+const projects = require('../api/project-model');
 const router = express.Router();
 
 router.get('/', (req, res)=>{
@@ -25,7 +25,16 @@ router.get('/:id', (req, res)=>{
 })
 
 router.post('/', (req, res)=>{
-    
+    const projectData = req.body;
+    projects.add(projectData)
+    .then(project =>{
+        res.status(201).json(project)
+    })
+    .catch(err => {
+        res.status(500).json({
+            message: 'Failed to create new project'
+        })
+    })
 })
 
 router.put('/', (req, res)=>{
